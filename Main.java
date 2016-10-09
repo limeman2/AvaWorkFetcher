@@ -81,7 +81,7 @@ public class Main {
 			Path f = Paths.get(FILE_NAME);
 			Files.write(f, storedJobs, Charset.forName("UTF-8"));
 		} catch (IOException e) {
-			e.printStackTrace();
+		    sendEmail("Error while running AvaJobFetcher", e.getMessage() + "<br>" + e.getStackTrace());
 		}
 				
 	}
@@ -115,7 +115,7 @@ public class Main {
             Transport.send(message);
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+	    sendEmail("Error while running AvaJobFetcher", e.getMessage() + "<br>" + e.getStackTrace());
         }
 	}
 	
